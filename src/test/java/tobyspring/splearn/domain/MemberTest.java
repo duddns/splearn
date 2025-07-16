@@ -25,7 +25,9 @@ class MemberTest {
       }
     };
 
-    member = Member.create("test@test.com", "nickname1", "secret1", passwordEncoder);
+    MemberCreateRequest memberCreateRequest = new MemberCreateRequest("test@test.com", "nickname1", "secret1");
+
+    member = Member.create(memberCreateRequest, passwordEncoder);
   }
 
 
@@ -88,7 +90,7 @@ class MemberTest {
   @Test
   void test_changePassword() {
     member.changePassword("secret2", passwordEncoder);
-    
+
     Assertions.assertThat(member.verifyPassword("secret2", passwordEncoder)).isTrue();
   }
 }
