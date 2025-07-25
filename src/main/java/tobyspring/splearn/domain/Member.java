@@ -12,7 +12,7 @@ public class Member {
    *
    */
 
-  private String email;
+  private Email email;
 
   private String nickname;
 
@@ -40,7 +40,7 @@ public class Member {
 
     Member member = new Member();
 
-    member.email = Objects.requireNonNull(memberCreateRequest.email());
+    member.email = new Email(memberCreateRequest.email());
     member.nickname = Objects.requireNonNull(memberCreateRequest.nickname());
     member.passwordHash = Objects.requireNonNull(passwordEncoder.encode(memberCreateRequest.password()));
 

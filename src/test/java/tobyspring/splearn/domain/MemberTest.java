@@ -33,7 +33,7 @@ class MemberTest {
 
   @Test
   void test_createMember() {
-    Assertions.assertThat(member.getEmail()).isEqualTo("test@test.com");
+    Assertions.assertThat(member.getEmail().address()).isEqualTo("test@test.com");
     Assertions.assertThat(member.getNickname()).isEqualTo("nickname1");
     Assertions.assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
   }
@@ -92,5 +92,25 @@ class MemberTest {
     member.changePassword("secret2", passwordEncoder);
 
     Assertions.assertThat(member.verifyPassword("secret2", passwordEncoder)).isTrue();
+  }
+
+  @Test
+  void test_isActive() {
+    Assertions.assertThat(member.isActive()).isFalse();
+
+    member.activate();
+
+    Assertions.assertThat(member.isActive()).isTrue();
+  }
+
+  @Test
+  void test_invalidEmail() {
+    Assertions.assertThatThrownBy(() -> {
+      MemberCreateRequest memberCreateRequest = new MemberCreateRequest("invalid@email", "nickname1", "secret1");
+      Member.create(memberCreateRequest, passwordEncoder);
+    }).isInstanceOf(IllegalArgumentException.class);
+
+    MemberCreateRequest memberCreateRequest = new MemberCreateRequest("valid@email.com", "nickname1", "secret1");
+    Member.create(memberCreateRequest, passwordEncoder);
   }
 }
