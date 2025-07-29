@@ -25,14 +25,14 @@ class MemberTest {
       }
     };
 
-    MemberCreateRequest memberCreateRequest = new MemberCreateRequest("test@test.com", "nickname1", "secret1");
+    MemberRegisterRequest memberRegisterRequest = new MemberRegisterRequest("test@test.com", "nickname1", "secret1");
 
-    member = Member.create(memberCreateRequest, passwordEncoder);
+    member = Member.register(memberRegisterRequest, passwordEncoder);
   }
 
 
   @Test
-  void test_createMember() {
+  void test_registerMember() {
     Assertions.assertThat(member.getEmail().address()).isEqualTo("test@test.com");
     Assertions.assertThat(member.getNickname()).isEqualTo("nickname1");
     Assertions.assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
@@ -106,11 +106,11 @@ class MemberTest {
   @Test
   void test_invalidEmail() {
     Assertions.assertThatThrownBy(() -> {
-      MemberCreateRequest memberCreateRequest = new MemberCreateRequest("invalid@email", "nickname1", "secret1");
-      Member.create(memberCreateRequest, passwordEncoder);
+      MemberRegisterRequest memberRegisterRequest = new MemberRegisterRequest("invalid@email", "nickname1", "secret1");
+      Member.register(memberRegisterRequest, passwordEncoder);
     }).isInstanceOf(IllegalArgumentException.class);
 
-    MemberCreateRequest memberCreateRequest = new MemberCreateRequest("valid@email.com", "nickname1", "secret1");
-    Member.create(memberCreateRequest, passwordEncoder);
+    MemberRegisterRequest memberRegisterRequest = new MemberRegisterRequest("valid@email.com", "nickname1", "secret1");
+    Member.register(memberRegisterRequest, passwordEncoder);
   }
 }

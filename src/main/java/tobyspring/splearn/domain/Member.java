@@ -25,8 +25,8 @@ public class Member {
   }
 
 
-  // 고민: memberCreateRequest 의 이름은 어떤게 좋을까? request? createRequest? memberCreateRequest?
-  public static Member create(MemberCreateRequest memberCreateRequest, PasswordEncoder passwordEncoder) {
+  // 고민: memberRegisterRequest 의 이름은 어떤게 좋을까? request? registerRequest? memberRegisterRequest?
+  public static Member register(MemberRegisterRequest memberRegisterRequest, PasswordEncoder passwordEncoder) {
     // 같은 타임 인자가 많아지면, 나중에 수정할 때 꼬일 수 있음
     // intellij inlay 기능으로 도움을 받을 수 있지만, 깃헙 등에서 코드를 보는 경우 어려울 수 있음
     // 방법1. builder 패턴을 적용하면 좋음
@@ -40,9 +40,9 @@ public class Member {
 
     Member member = new Member();
 
-    member.email = new Email(memberCreateRequest.email());
-    member.nickname = Objects.requireNonNull(memberCreateRequest.nickname());
-    member.passwordHash = Objects.requireNonNull(passwordEncoder.encode(memberCreateRequest.password()));
+    member.email = new Email(memberRegisterRequest.email());
+    member.nickname = Objects.requireNonNull(memberRegisterRequest.nickname());
+    member.passwordHash = Objects.requireNonNull(passwordEncoder.encode(memberRegisterRequest.password()));
 
     member.status = MemberStatus.PENDING;
 
