@@ -1,7 +1,10 @@
 package tobyspring.splearn.domain;
 
+import jakarta.persistence.Embeddable;
 import java.util.regex.Pattern;
 
+// jpa 3.2 부터 record 에 @Embeddable 을 사용할 수 있음
+@Embeddable
 public record Email(
     String address
 ) {

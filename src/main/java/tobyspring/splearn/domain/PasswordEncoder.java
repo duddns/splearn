@@ -3,7 +3,7 @@ package tobyspring.splearn.domain;
 public interface PasswordEncoder {
 
   /*
-   * 패스워드 암호화는 application 의 required 인터페이스에 해당할 수 있음
+   * NOTE 패스워드 암호화는 application 의 required 인터페이스에 해당할 수 있음
    * 하지만 application.required 패키지로 이 인터페이스를 옮기면 domain -> application 을 참조하는 상황이 발생함
    * 이것은 옳지 않음
    * 도메인도 애플리케이션 안에 있는 것

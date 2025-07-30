@@ -9,7 +9,7 @@ import tobyspring.splearn.domain.Member;
 public interface MemberRepository extends Repository<Member, Long> {
 
   /*
-   * application 에서 특정 기술(spring data jpa)에 종속되는 것에 대해 논의의 여지가 있음
+   * NOTE application 에서 특정 기술(spring data jpa)에 종속되는 것에 대해 논의의 여지가 있음
    */
 
   Member save(Member member);
