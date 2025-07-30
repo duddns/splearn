@@ -11,6 +11,7 @@ import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.util.Assert;
 
 @Entity
@@ -29,6 +30,7 @@ public class Member {
   private Long id;
 
   @Embedded
+  @NaturalId // NOTE 하이버네이트에서 지원하는 자연키 어노테이션. unique 제약이 추가됨
   private Email email;
 
   private String nickname;
